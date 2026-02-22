@@ -18,6 +18,9 @@
 // Create variable to store sensor state
 int irState = 0;
 
+// Count total obstacles detected
+int obstacleCount = 0;
+
 void setup() {
 
     // TODO 3:
@@ -42,13 +45,18 @@ void loop() {
 
     // TODO 7:
     // If obstacle detected
+    // Read digital value from IR sensor
+    irState = digitalRead(IR_PIN);
+
     if (irState == HIGH) {
+        obstacleCount++;
         Serial.println("Obstacle Detected");
+        Serial.print("Total Obstacles Detected: ");
+        Serial.println(obstacleCount);
     }
     else {
         Serial.println("No Obstacle");
     }
-
     // TODO 8:
     // Add small delay (200–500ms)
     delay(500); // 500ms delay
